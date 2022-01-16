@@ -1,0 +1,420 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+*{
+    font-family: "Share Tech Mono", monospace;
+    text-decoration: none;
+}
+
+.container{
+    display: none;
+}
+
+.divStartGame{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Definim les dimensions de la nostre grid on estarà el contingut del joc */
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    width:600px;
+    height: 560px;
+    border: solid black;
+    margin-top: 70px;
+    background-color: black;
+    float: left;
+}
+
+/* Definim les dimensions i modificacions de cada element de la nostre grid */
+.grid div{
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box; 
+}
+
+.small-dots{
+    background-color: goldenrod;
+    border: 8px solid black;
+    box-sizing: border-box;
+    border-radius: 9px;
+}
+
+.small-dots-again{
+    background-color: goldenrod;
+}
+
+.wall{
+    background-color: black;
+}
+
+.top{
+    border-top: 3px solid blue;
+}
+
+.right{
+    border-right: 3px solid blue;
+}
+
+.left{
+    border-left: 3px solid blue;
+}
+
+.bot{
+    border-bottom: 3px solid blue;
+}
+
+.big-dots{
+    background-color: black;
+    /* border: 3px solid black; */
+    /* border-radius: 10px; */
+}
+
+/* Ara definirem l'estil de l'element amb el que jugarem */
+.character{
+    background-color: white;
+    border-radius: 10px;
+    width: 5px;
+    height: 5px;  
+    background-image: url("../media/img/pacman_gif.gif");
+    background-position: center;
+    background-size: 60px;
+}
+
+
+body{
+    background: url(../media/img/dsxblur.jpg) no-repeat center center fixed;
+        background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        display: flex;
+        justify-content: center;
+}
+
+
+.enemy-territory{
+    border-top: 5xpx solid cadetblue;
+}
+
+.enemy1{
+    background-image: url("../media/img/ghost_red.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60px;
+}
+
+.enemy2{
+    background-image: url("../media/img/ghost_red.gif");
+    background-position: center;
+    background-size: 60px;
+}
+
+.enemy3{
+    background-image: url("../media/img/ghost_red.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60px;
+}
+
+.enemy4{
+    background-image: url("../media/img/ghost_red.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60px;
+}
+
+.timeAndScoreDiv{
+    float: left;
+    height: 560px;
+    width: 250px;
+    margin-right: 50px;
+    
+    box-sizing: border-box;
+    border: 5px solid black;
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    background-image: url(../media/img/background.jpg);
+    color: white;
+    padding-top: 100px;
+}
+
+
+#elementsFrase{
+    float: right;
+    height: 560px;
+    width: 250px;
+    margin-left: 50px;
+    box-sizing: border-box;
+    border: 5px solid black;
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    background-image: url(../media/img/background.jpg);
+}
+
+
+.F{
+    background-image: url("../media/img/letraf.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 15px;
+}
+
+.R{
+    background-image: url("../media/img/letrar.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 15px;
+}
+
+.A{
+    background-image: url("../media/img/letraa.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 17px;
+}
+
+.S{
+    background-image: url("../media/img/letras.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 15px;
+}
+
+.E{
+    background-image: url("../media/img/letrae.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 14px;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-image: url(../media/img/background2.jpg);
+    background-position: 400px 200px;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-size: 850px;
+    margin: 4% auto; /* 4% from the top and centered */
+    padding: 20px;
+    border: 1px solid grey;
+    width: 80%; /* Could be more or less, depending on screen size */
+    height: 80%;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lletresFrase{
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    position: relative;
+    color: white;
+    font-size: 20px;
+  }
+
+  .divTextFrase{
+    position: absolute;
+    margin-top: 5%;
+    width: 200px;
+    height: 45%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid white;
+    box-sizing: border-box;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+    scroll-padding-bottom: 20px;
+  }
+
+  .base-timer {
+    position: relative;
+    height: 100px;
+    width: 100px;
+  }
+  
+  /* Fem que es vegi el contingut de l'anell */
+  .base-timer-circle {
+    fill: none;
+    stroke: none;
+  }
+  
+  /* L'anell on mostrarem el temps */
+  .base-timer-path-elapsed {
+    stroke-width: 7px; /*Gruixut del stroke que es veurà (el nostre anell)*/
+    stroke: grey; /*Pintarà la figura per fora*/
+    
+  }
+
+  /*Classe del cercle*/
+  .base-timer-label{
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top:0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+  }
+
+  .base-timer-path-remaining{
+      stroke-width: 7px; /*Gruixut com l'altre anell*/
+      stroke-linecap: round; /*Forma de l'anell*/
+      transform: rotate(90deg); /*L'animació comença per la part superior de l'anell*/
+      transform-origin: center;
+      transition: 1s linear all; /*1 segon perque el timer va d'1 en 1*/
+      stroke: currentColor; /*Necessari per modificar el color de l'anell*/
+  }
+
+  .base-timer-svg{
+      transform: scaleX(-1); /*Fem que l'animació sigui al revés.*/
+  }
+
+
+  .scoreDiv{
+    position: absolute;
+    margin-top: 12%;
+    width: 150px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 2px solid white;
+  }
+
+  .line{
+      width: inherit;
+      border-bottom: 2px solid white;
+      margin-top: 40px;
+      position: absolute;
+  }
+
+  .scoreText{
+      margin-top: 60px;
+      position: absolute;
+  }
+
+  .btnPlayAgain{
+      position: absolute;
+      top: 80%;
+      height: 60px;
+      width: 100px;
+      background-image: url(../media/img/buttonGif.gif);
+      background-position-y: 5px;
+      background-repeat: no-repeat;
+      background-size: 225px;
+      color: white;
+      background-color: black;
+  }
+
+  .playAgainText{
+      position: absolute;
+      font-size: 15px;
+      top: 2%;
+  }
+
+  
+
+  .btnStartGame{
+    height: 100px;
+    width: 200px;
+    background-image: url(../media/img/buttonGif.gif);
+    background-position-y: 20px;
+    background-repeat: no-repeat;
+    background-size: 300px;
+    color: white;
+    background-color: black;
+    border-color: black;
+    /* display: none; */
+ }
+
+ .timerStartGame{
+     display: none;
+     color: white;
+     font-size: 60px;
+ }
+
+ .titleGame{
+    font-size: 90px;
+    color: white;
+ }
+
+ .startGameText{
+     margin-top: 10px;
+    font-size: 25px;
+ }
+  
+
+  ::-webkit-scrollbar{
+      width: 3px; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: white; 
+  }
+
+  .btnHome{
+      background-image: url(../media/img/backbutton.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;
+      width: 100px;
+      height: 40px;
+      left: 5px;
+      font-size: 25px;
+  }
+
+  .btnHome2{
+    background-image: url(../media/img/backbutton.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 81%;
+    left: 40%;
+    width: 100px;
+    height: 40px;
+    font-size: 25px;
+}
+
+
+  th, td{
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+ }
+
+ table{
+     border-collapse: collapse;
+     margin-top: 10px;
+     width: 80%;
+ }
+
+ .rankingText{
+     margin-top: 50px;
+ }
